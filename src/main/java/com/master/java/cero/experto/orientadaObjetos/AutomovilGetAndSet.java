@@ -1,6 +1,6 @@
 package com.master.java.cero.experto.orientadaObjetos;
 
-public class Automovil {
+public class AutomovilGetAndSet {
 	
 	private String fabricante;
 	private String modelo;

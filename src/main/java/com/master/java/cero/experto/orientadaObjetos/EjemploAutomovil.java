@@ -5,23 +5,23 @@ public class EjemploAutomovil {
 	public static void main(String[] args) {
 		
 		Automovil subaru = new Automovil();
-		subaru.fabricante="Honda";
-		subaru.modelo="Rxj";
-		subaru.color="Negro";
-		subaru.cilindrada= 3.4;
+		subaru.setFabricante("Honda");
+		subaru.setModelo("Rxj");
+		subaru.setColor("Negro");
+		subaru.setCilindrada(3.4);
 		
 		
 		Automovil mazda = new Automovil();
-		mazda.fabricante="Mazda";
-		mazda.modelo="rrLletjo";
-		mazda.color="Blanco";
-		mazda.cilindrada= 2.5;
+		mazda.setFabricante("Mazda");
+		mazda.setModelo("rrLletjo");
+		mazda.setColor("Blanco");
+		mazda.setCilindrada(2.5);
 		
 		
 		/* 1.- Ahora llamamos a la clase detalle dentro de "Automovil" la cual nos imprimira la información.*/
 		System.out.println(subaru.verDetalle());
 		System.out.println("");
-		System.out.println(mazda.verDetalle());
+//		System.out.println(mazda.verDetalle());
 		
 		/* 2.- Llamamos al segundo método creado. */
 		System.out.println("");
