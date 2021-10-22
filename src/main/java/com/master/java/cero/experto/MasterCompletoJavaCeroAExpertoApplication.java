@@ -9,10 +9,6 @@ public class MasterCompletoJavaCeroAExpertoApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(MasterCompletoJavaCeroAExpertoApplication.class, args);
 		
-		String nombre = "jose";
-		System.out.println(nombre);
-	
-	
 	}
 	
 	

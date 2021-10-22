@@ -24,7 +24,7 @@ public class EjemploJavaUtilDate {
 		System.out.println("Fecha Formateada con minutos y segundos = " + fechaStr2);
 	
 		
-		SimpleDateFormat fechaFormateada3 = new SimpleDateFormat("EEEE dd 'de' MMMM, yyyy");
+		SimpleDateFormat fechaFormateada3 = new SimpleDateFormat("EEEE dd 'de' MMMM, yyyy HH:mm:ss" );
 		String fechaStr3 = fechaFormateada3.format(fecha);
 		
 		System.out.println("Fecha indicada en formato de letras = " + fechaStr3);

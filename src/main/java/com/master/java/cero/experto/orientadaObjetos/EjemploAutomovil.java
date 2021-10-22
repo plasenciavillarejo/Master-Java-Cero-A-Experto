@@ -4,12 +4,11 @@ public class EjemploAutomovil {
 
 	public static void main(String[] args) {
 		
-		Automovil auto = new Automovil();
-
-		auto.fabricante="Honda";
-		auto.modelo="Rxj";
-		auto.color="Negro";
-		auto.cilindrada= 3.4;
+		Automovil subaru = new Automovil();
+		subaru.fabricante="Honda";
+		subaru.modelo="Rxj";
+		subaru.color="Negro";
+		subaru.cilindrada= 3.4;
 		
 		
 		Automovil mazda = new Automovil();
@@ -19,19 +18,30 @@ public class EjemploAutomovil {
 		mazda.cilindrada= 2.5;
 		
 		
-		
-		System.out.println("auto.fabricante = " + auto.fabricante);
-		System.out.println("auto.fabricante = " + auto.modelo);
-		System.out.println("auto.fabricante = " + auto.color);
-		System.out.println("auto.fabricante = " + auto.cilindrada);
-		
+		/* 1.- Ahora llamamos a la clase detalle dentro de "Automovil" la cual nos imprimira la información.*/
+		System.out.println(subaru.verDetalle());
 		System.out.println("");
-		System.out.println("");
+		System.out.println(mazda.verDetalle());
 		
-		System.out.println("mazda.fabricante = " + auto.fabricante);
-		System.out.println("mazda.fabricante = " + auto.modelo);
-		System.out.println("mazda.fabricante = " + auto.color);
-		System.out.println("mazda.fabricante = " + auto.cilindrada);
+		/* 2.- Llamamos al segundo método creado. */
+		System.out.println("");
+		System.out.println(subaru.acelerar(1500));
+		System.out.println(subaru.frenar());
+		
+		
+		/* 3.- Llamamos a los 2 métods juntos dentro de la misma clase. */
+		System.out.println("");
+		System.out.println(subaru.acelerarFrenar(4500));
+		
+		
+		/* 4.- Llamamos clase calcularConsumo con float*/
+		System.out.println("");
+		System.out.println("Kilómetros por litro " + subaru.calcularConsumo(300, 0.6f));
+		
+		
+		/* 4.- Llamamos clase calcularConsumo con int*/
+		System.out.println("");
+		System.out.println("Kilómetros por litro " + subaru.calcularConsumo(300, 60));
 		
 	}
 
