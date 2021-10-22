@@ -5,13 +5,13 @@ public class AutomovilConstantesFinales {
 	private int id;
 	private String fabricante;
 	private String modelo;
-	private String color = "gris";
+	private Color color = Color.GRIS;
 	private double cilindrada;
 	private int capacidadEstanque = 40;
 	
 	/* Creamos el método estatico. */
 	
-	private static String colorPatente = "Naranja";
+	private static Color colorPatente = Color.NARANJA;
 	/* Creamos un valor estatico para manetner el último id para luego incrementarlo.*/
 	private static int ultimoId;
 
@@ -35,14 +35,14 @@ public class AutomovilConstantesFinales {
 	
 	/* para no repetir código vamos a llamar a un constructor dentro de otro constructor.
 	 * Este constructor va a llamar al constructor de arriba para el fabricante y el modelo.*/
-	public AutomovilConstantesFinales(String fabricante, String modelo, String color) {
+	public AutomovilConstantesFinales(String fabricante, String modelo, Color color) {
 	//  this.fabricante = fabricante;
 	//	this.modelo = modelo;
 		this(fabricante, modelo);
 		this.color = color;	
 	}
 	
-	public AutomovilConstantesFinales(String fabricante, String modelo, String color, double Cilindrada) {
+	public AutomovilConstantesFinales(String fabricante, String modelo, Color color, double Cilindrada) {
 	//	this.fabricante = fabricante;
 	//	this.modelo = modelo;
 	//	this.color = color;	
@@ -50,7 +50,7 @@ public class AutomovilConstantesFinales {
 		this.cilindrada = cilindrada;
 	}
 		
-	public AutomovilConstantesFinales(String fabricante, String modelo, String color, double cilindrada,
+	public AutomovilConstantesFinales(String fabricante, String modelo, Color color, double cilindrada,
 			int capacidadEstanque) {
 		
 	//	this.fabricante = fabricante;
@@ -81,11 +81,11 @@ public class AutomovilConstantesFinales {
 	
 	
 	
-	public static String getColorPatente() {
+	public static Color getColorPatente() {
 		return colorPatente;
 	}
 
-	public static void setColorPatente(String colorPatente) {
+	public static void setColorPatente(Color colorPatente) {
 		AutomovilConstantesFinales.colorPatente = colorPatente;
 	}
 
@@ -130,11 +130,11 @@ public class AutomovilConstantesFinales {
 		this.modelo = modelo;
 	}
 
-	public String getColor() {
+	public Color getColor() {
 		return color;
 	}
 
-	public void setColor(String color) {
+	public void setColor(Color color) {
 		this.color = color;
 	}
 

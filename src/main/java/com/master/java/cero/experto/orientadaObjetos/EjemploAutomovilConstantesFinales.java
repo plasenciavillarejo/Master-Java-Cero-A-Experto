@@ -5,13 +5,13 @@ public class EjemploAutomovilConstantesFinales {
 public static void main(String[] args) {
 		
 	AutomovilConstantesFinales subaru = new AutomovilConstantesFinales("Honda", "Rxj");
-		subaru.setColor("Negro");
+		subaru.setColor(Color.BLANCO);
 		subaru.setCilindrada(3.4);
 
-		AutomovilConstantesFinales mazda = new AutomovilConstantesFinales("Mazda", "rrLletjo", "Blanco");
+		AutomovilConstantesFinales mazda = new AutomovilConstantesFinales("Mazda", "rrLletjo", Color.AZUL);
 		mazda.setCilindrada(2.5);
 
-		AutomovilConstantesFinales hyunday = new AutomovilConstantesFinales("hyunday","Negro","Quizas",3.5,50);
+		AutomovilConstantesFinales hyunday = new AutomovilConstantesFinales("hyunday","Quizas",Color.ROJO,3.5,50);
 
 		/* 1.- Cuando imprimimos el método veremos que el valor por defecto en patenteColor es "Naranja" */
 		
@@ -33,9 +33,11 @@ public static void main(String[] args) {
 		System.out.println(mazda.verDetalle());
 		
 		
-		/* Imprimimos las variables estaticas finales */
-		System.out.println("Velocidad estatica final en carretera : " + AutomovilConstantesFinales.VELOCIDAC_MAXIMA_CARRETERA);
-		System.out.print("Velocidad estatica final en ciudad: " + AutomovilConstantesFinales.VELOCIDAD_MAXIMA_CIUDAD);
+
+		/* Llamando a la clase enum */
+		AutomovilConstantesFinales asus = new AutomovilConstantesFinales();
+		asus.setColor(Color.ROJO);
+		
 		
 	}
 
