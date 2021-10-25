@@ -4,10 +4,14 @@ public class EjemploAutomovilConstantesFinales {
 
 public static void main(String[] args) {
 		
+	
 	AutomovilConstantesFinales subaru = new AutomovilConstantesFinales("Honda", "Rxj");
 		subaru.setColor(Color.BLANCO);
 		subaru.setCilindrada(3.4);
 
+	// Añadimos Constantes para TipoAutomovil.java
+		subaru.setTipoAutomovil(TipoAutomovil.HATCHBACK);
+		
 		AutomovilConstantesFinales mazda = new AutomovilConstantesFinales("Mazda", "rrLletjo", Color.AZUL);
 		mazda.setCilindrada(2.5);
 
