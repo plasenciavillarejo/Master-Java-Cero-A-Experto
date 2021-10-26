@@ -1,4 +1,4 @@
-package com.master.java.cero.experto.orientadaObjetos;
+package com.master.java.cero.experto.orientadaObjetos.Enum;
 
 public class Persona {
 

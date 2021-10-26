@@ -1,4 +1,4 @@
-package com.master.java.cero.experto.orientadaObjetos;
+package com.master.java.cero.experto.orientadaObjetos.Enum;
 
 public class Rueda {
 
@@ -20,6 +20,11 @@ public class Rueda {
 	}
 	public double getAncho() {
 		return ancho;
+	}
+	
+	@Override
+	public String toString() {
+		return  fabricante + " " +  aro + " " +  ancho;
 	}
 	
 	

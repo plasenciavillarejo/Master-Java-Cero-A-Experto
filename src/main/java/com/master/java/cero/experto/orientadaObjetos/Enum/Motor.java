@@ -1,4 +1,6 @@
-package com.master.java.cero.experto.orientadaObjetos;
+package com.master.java.cero.experto.orientadaObjetos.Enum;
+
+import com.master.java.cero.experto.orientadaObjetos.TipoMotor;
 
 public class Motor {
 

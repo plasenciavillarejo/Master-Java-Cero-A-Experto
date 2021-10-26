@@ -1,4 +1,9 @@
-package com.master.java.cero.experto.orientadaObjetos;
+package com.master.java.cero.experto.orientadaObjetos.Enum;
+
+import java.util.Arrays;
+
+import com.master.java.cero.experto.orientadaObjetos.Color;
+import com.master.java.cero.experto.orientadaObjetos.TipoAutomovil;
 
 public class AutomovilPersona {
 
@@ -9,37 +14,33 @@ public class AutomovilPersona {
 	private Motor motor;
 	private Estanque estanque;
 	private Persona persona;
-	private Rueda[] ruedas;
-	
-	
-// Vamos añadir la clase Enum que TipoAutomovil.java para que pueda ser utilizada. Con sus get/set
-		private TipoAutomovil tipoAutomovil;
+	private Rueda ruedas;
+	// Vamos añadir la clase Enum que TipoAutomovil.java para que pueda ser utilizada. Con sus get/set
+	private TipoAutomovil tipoAutomovil;
 	
 	/* Creamos el método estatico que por defecto será igual para todos. */
 	private static Color colorPatente = Color.NARANJA;
+
+	/* Atributo de clase final*/
+	public static final Integer VELOCIDAC_MAXIMA_CARRETERA = 120; 
+	public static final Integer VELOCIDAD_MAXIMA_CIUDAD = 50;
 	
 	/* Creamos un valor estatico para manetner el último id para luego incrementarlo.*/
 	private static int ultimoId;
 
 	/* 1.- Incrementamos el ID */
 	public AutomovilPersona() {
-		this.id = ++ultimoId;
+		this.id = ++ ultimoId;
 	}
-	
-	
-	/* Atributo de clase final*/
-	public static final Integer VELOCIDAC_MAXIMA_CARRETERA = 120; 
-	public static final Integer VELOCIDAD_MAXIMA_CIUDAD = 50;
-	
-	/* Constructores. */
+		
+	/* Constructores inicializando 2 atributos. */
 	public AutomovilPersona(String fabricante, String modelo) {
-		this();
 		this.fabricante = fabricante;
 		this.modelo = modelo;
 	}
 	
-	/* para no repetir código vamos a llamar a un constructor dentro de otro constructor.
-	 * Este constructor va a llamar al constructor de arriba para el fabricante y el modelo.*/
+	/* Creo constructor solo con 3 campos.
+	 * Uso el this(fabricante,modelo) para hacer referencia al constructor de arriba y no repetir código. */
 	public AutomovilPersona(String fabricante, String modelo, Color color) {
 	//  this.fabricante = fabricante;
 	//	this.modelo = modelo;
@@ -47,6 +48,7 @@ public class AutomovilPersona {
 		this.color = color;	
 	}
 	
+	/* 3.- Constructor con 4 parámetros de entrada inicializados. */
 	public AutomovilPersona(String fabricante, String modelo, Color color, Motor motor) {
 	//	this.fabricante = fabricante;
 	//	this.modelo = modelo;
@@ -56,8 +58,7 @@ public class AutomovilPersona {
 	}
 		
 	public AutomovilPersona(String fabricante, String modelo, Color color, Motor motor,
-			Estanque estanque) {
-		
+		Estanque estanque) {		
 	//	this.fabricante = fabricante;
 	//	this.modelo = modelo;
 	//	this.color = color;
@@ -67,26 +68,30 @@ public class AutomovilPersona {
 	}
 	
 	public AutomovilPersona(String fabricante, String modelo, Color color, Motor motor, Estanque estanque,
-			Persona persona, Rueda[] ruedas) {
+			Persona persona, Rueda ruedas) {
 		this(fabricante,modelo,color,motor,estanque);
 		this.persona = persona;
 		this.ruedas = ruedas;
 	}
 
-	/* 1.- Static= Hace que el atributo sea de la clase.
-	 * 2.- Final = Hace que el atributo sea una constante y no se pueda modificar en la herencia .*/
+	/* 1.- Creamos un método para poder inicializarlo con datos en la clase EjemploAutomovilPersona.java */
 	public String verDetalle() {
-		/* 1.- Mostramos el detalle del Automovil.
-		 * 2.- Siempre que quiera acceder aun método de la misma clase tengo que usar el -> "this." */
-		
+				
 		StringBuilder sb = new StringBuilder();
-		sb.append("auto.id = " + this.id);
-		sb.append("\nauto.fabricante = " + this.fabricante);
-		sb.append("\nauto.modelo = " + this.modelo);
-		sb.append("\nauto.tipo = " + this.tipoAutomovil);
-		sb.append("\nauto.color = " + this.color);
-		sb.append("\nauto.patenteColor = " + colorPatente);
-		sb.append("\nauto.motor = " + this.motor.getCilindrada());
+		sb.append(" auto.id = " + this.id);
+		sb.append("\n auto.persona = " + this.getPersona());
+		sb.append("\n auto.fabricante = " + this.fabricante);
+		sb.append("\n auto.modelo = " + this.modelo);
+		sb.append("\n auto.tipo = " + this.tipoAutomovil);
+		sb.append("\n auto.color = " + this.color);
+		sb.append("\n auto.patenteColor = " + colorPatente);
+		
+		if(this.motor != null) {
+			sb.append("\n auto.motor.cilindrada = " + this.motor.getCilindrada());
+			sb.append("\n auto.motor.tipo = " + this.motor.getTipo());
+		}
+		sb.append("\n auto.estanque = " + this.estanque);
+		sb.append("\n auto.rueda = " + this.ruedas);
 		
 		return sb.toString();
 	}
@@ -120,6 +125,10 @@ public class AutomovilPersona {
 	public String acelerar(int rpm) {
 		return "el auto " + this.fabricante + " acelerando a " + rpm + " rpm";
 	}
+	
+	
+	
+	
 	
 	
 	/* Get and Set */
@@ -171,11 +180,13 @@ public class AutomovilPersona {
 		this.persona = persona;
 	}
 
-	public Rueda[] getRuedas() {
+
+
+	public Rueda getRuedas() {
 		return ruedas;
 	}
 
-	public void setRuedas(Rueda[] ruedas) {
+	public void setRuedas(Rueda ruedas) {
 		this.ruedas = ruedas;
 	}
 
