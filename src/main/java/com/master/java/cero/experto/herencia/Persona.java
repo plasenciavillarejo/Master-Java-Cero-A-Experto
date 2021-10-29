@@ -12,7 +12,35 @@ public class Persona {
 	private int edad;
 	private String email;
 	
+	/* 1.- Constructor Vació por defecto */
+	public Persona() {
+		System.out.println("Persona: inicializando constructor...");
+	}
 
+	/* 2.- Constructor con 2 parámetros. */
+	public Persona(String nombre, String apellido) {
+		this.nombre = nombre;
+		this.apellido = apellido;
+	}
+	
+	public Persona(String nombre, String apellido, int edad) {
+		this(nombre,apellido);
+		this.edad = edad;
+	}
+	
+
+	/* Generamos el método para mostrarlo por pantalla*/
+	public String imprimirPersona() {
+		 
+		StringBuilder sb = new StringBuilder();
+		sb.append("Nombre: " + this.getNombre())
+			.append("\nApellido: " + this.getApellido())
+			.append("\nEdad: " + this.getEdad());
+	
+		return sb.toString();
+	}
+	
+	
 
 	public String getNombre() {
 		return nombre;
