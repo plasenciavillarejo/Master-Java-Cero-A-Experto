@@ -1,8 +1,8 @@
 package com.master.java3.cero.experto.interfaces.imprenta;
 
-import com.master.java3.cero.experto.interfaces.imprenta.modelo.Curriculum;
-import com.master.java3.cero.experto.interfaces.imprenta.modelo.Hoja;
-import com.master.java3.cero.experto.interfaces.imprenta.modelo.Informe;
+import interfaces.com.master.java3.cero.experto.interfaces.imprenta.modelo.Curriculum;
+import interfaces.com.master.java3.cero.experto.interfaces.imprenta.modelo.Hoja;
+import interfaces.com.master.java3.cero.experto.interfaces.imprenta.modelo.Informe;
 
 public class EjemploImprenta {
 

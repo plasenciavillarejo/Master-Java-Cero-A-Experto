@@ -1,4 +1,4 @@
-package com.master.java3.cero.experto.interfaces.imprenta.modelo;
+package interfaces.com.master.java3.cero.experto.interfaces.imprenta.modelo;
 
 import java.util.ArrayList;
 import java.util.List;
