@@ -1,5 +1,8 @@
 package com.master.java.cero.experto.orientadaObjetos;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class EjemploAutomovil {
 
 	public static void main(String[] args) {
@@ -42,6 +45,26 @@ public class EjemploAutomovil {
 		/* 4.- Llamamos clase calcularConsumo con int*/
 		System.out.println("");
 		System.out.println("Kilómetros por litro " + subaru.calcularConsumo(300, 60));
+		
+		
+		Automovil au = new Automovil();
+		List<Automovil> auto = new ArrayList<Automovil>();
+		au.setCapacidadEstanque(190);
+		au.setCilindrada(11);
+		au.setColor("rojo");
+		au.setFabricante("hyunday");
+		au.setModelo("x313");
+		auto.add(au);
+		for(Automovil a : auto) {
+		System.out.println("FRENANDO COJONES " + a.frenar());
+		}
+		
+		Automovil respuesta = new Automovil();
+		System.out.println(respuesta.taller("Getronics", "CHS", 1500));
+		
+		
+		
+		
 		
 	}
 

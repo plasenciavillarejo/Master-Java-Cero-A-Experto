@@ -25,6 +25,10 @@ public class Automovil {
 		return sb.toString();
 	}
 	
+	public String taller(String fabricante, String modelo, double cilindrada) {
+		return "El fabricante "+ fabricante + "indica que tu modelo " + modelo+
+				"contiene una cilindrada de " + cilindrada;				
+	}
 	
 	
 	public String frenar() {
