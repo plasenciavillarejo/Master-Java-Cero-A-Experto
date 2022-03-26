@@ -4,7 +4,6 @@ public class Pagina extends Hoja implements Imprimible{
 
 	public Pagina(String contenido) {
 		super(contenido);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
