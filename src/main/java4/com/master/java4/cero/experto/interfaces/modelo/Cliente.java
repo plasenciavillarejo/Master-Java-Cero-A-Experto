@@ -1,5 +1,7 @@
 package com.master.java4.cero.experto.interfaces.modelo;
 
+import java.util.Objects;
+
 public class Cliente {
 	
 	private Integer id;
@@ -47,6 +49,25 @@ public class Cliente {
 		return "id=" + id + ", "
 				+ "nombre=" + nombre + ", "
 				+ "apellido=" + apellido;
+	}
+
+	// Implementamos el método equals para comparar los ID y borrarlos con el método eliminar
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Cliente other = (Cliente) obj;
+		return Objects.equals(id, other.id);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(id);
 	}
 
 	
