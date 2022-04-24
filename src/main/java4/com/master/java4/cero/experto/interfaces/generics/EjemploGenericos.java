@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import com.master.java4.cero.experto.interfaces.modelo.Cliente;
+import com.master.java4.cero.experto.interfaces.modelo.ClientePremium;
 
 public class EjemploGenericos {
 
@@ -47,8 +48,22 @@ public class EjemploGenericos {
 		 List<String> nombres = fromArrayToList(new String[] {"Andres", "Pepe",
 				 "Jose","David"}, enterosArreglo);
 		 System.out.println("\nImprimimos la lista de nombres");
-		 nombres.forEach(System.out::println);
+		 nombres.forEach(System.out::println); 
 		 
+		 /* Creamos un cliente premium*/
+		 List<ClientePremium> clientePemiumList = fromArrayToList(new ClientePremium[]{
+				 new ClientePremium("Jose", "plasencia")});
+		 
+		 
+		 System.out.println("\n\n===== Imprimiendo las diferentes listas de clientes que hay: ===== \n");
+		 /* Vamos a imprimir los clientes que hay */
+		 imprimirClientes(clientes);
+		 imprimirClientes(clientesLista);
+		 
+		 /* Para que nos deje impriimr los clientePremiumList debemos de cambiar el método imprimirClientes 
+		   Le añadimos al método una comodin ? extends Clientes. Con esto ya nos deja imprimir cualquier clase que herede de Clientes. 
+		 */
+		 imprimirClientes(clientePemiumList);
 		 
 	}
 	
@@ -72,5 +87,21 @@ public class EjemploGenericos {
 		}
 		return Arrays.asList(c);
 	}	
+
+	/* Ahora creamos un método genérico que extienda de Cliente y añadimos un Comparable para evitar usar cast al usar compareTo(). */
+	
+	public static <T extends Cliente & Comparable<T>> List<T> fromArrayToList(T[] c){		
+		// El método Arrays.asList puede convertir un array en una lista.
+		return Arrays.asList(c);
+	}
+	
+	/* Creamos un método para imprimi clientes
+	 * Para que imprima cualquier clase que herede de Clientes debemos de pasarle comodines ->? extends */
+	
+	public static void imprimirClientes(List<? extends Cliente> clientes) {
+		clientes.forEach(System.out::println);
+	}
+	
+	
 	
 }
