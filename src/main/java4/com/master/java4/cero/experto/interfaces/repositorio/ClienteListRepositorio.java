@@ -20,16 +20,16 @@ public class ClienteListRepositorio implements CrudRepositorio, OrdenableReposit
 	
 	@Override
 	public List<Cliente> listar() {
-		 
-		return null;
+		return dataSource;
 	}
+
 
 	@Override
 	public Cliente busquedaId(Integer id) {
 		Cliente clienteEncontrado = null;
 		
 		for(Cliente cliente : dataSource) {
-			if(cliente.getId().equals(id)) {
+			if(cliente.getId() != null && cliente.getId().equals(id)) {
 				clienteEncontrado = cliente;
 				break;
 			}
@@ -57,15 +57,11 @@ public class ClienteListRepositorio implements CrudRepositorio, OrdenableReposit
 	}
 
 	@Override
-	public List<Cliente> listar(int desde, int hasta) {	
-		return dataSource.subList(desde, hasta);
-	}
-
-	@Override
 	public List<Cliente> listar(String campo, Direccion dir) {
 		// Ordenamos utilizando el método sort que implementa una clase de forma anónima.
 		dataSource.sort(new Comparator<Cliente>() {
 
+			// El método compareTo compara un número entero por lo que debemos de crear una variable int resultado.
 			@Override
 			public int compare(Cliente a, Cliente b) {
 				// 1º Ordenamos por dirección.
@@ -94,6 +90,17 @@ public class ClienteListRepositorio implements CrudRepositorio, OrdenableReposit
 		});
 		return dataSource;
 	}
+
+	// Una forma de abreviar la paginación de arriba es implementando el siguiente método.
+	
+	@Override
+	public List<Cliente> listar(int desde, int hasta) {	
+		
+		// Implementamos un subList(desde,hasta). Tenemos un subconjunto paginado.
+		return dataSource.subList(desde, hasta);
+	}
+
+
 
 
 

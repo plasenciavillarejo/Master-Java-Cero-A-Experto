@@ -44,11 +44,13 @@ public class Cliente {
 		this.apellido = apellido;
 	}
 
+	// Se utiliza para devolver los datos de listar.
+	
 	@Override
 	public String toString() {
-		return "id=" + id + ", "
-				+ "nombre=" + nombre + ", "
-				+ "apellido=" + apellido;
+		return "Id= " + id + ", "
+				+ "Nombre= " + nombre + ", "
+				+ "Apellido= " + apellido;
 	}
 
 	// Implementamos el método equals para comparar los ID y borrarlos con el método eliminar
