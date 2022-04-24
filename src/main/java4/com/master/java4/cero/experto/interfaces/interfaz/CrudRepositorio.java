@@ -1,4 +1,4 @@
-package com.master.java4.cero.experto.interfaces.repositorio;
+package com.master.java4.cero.experto.interfaces.interfaz;
 
 import java.util.List;
 
