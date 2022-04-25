@@ -65,6 +65,14 @@ public class EjemploGenericos {
 		 */
 		 imprimirClientes(clientePemiumList);
 		 
+		 
+		 /* Imprimimos el método public static <T extends Comparable<T>> T maximo(T a, T b, T c) */
+		 
+		 System.out.println("\n\n===== Imprimiendo clase genérica que imprime el mayor ya sea int o string: ===== \n");
+		 System.out.println("El máximo del 1, 9, 10 es: " + maximo(1, 9, 10));
+		 System.out.println("El máximo del 11.2, 9.2, 15.4 es: " + maximo(11.2, 9.2, 15.4));
+		 
+		 
 	}
 	
 	/* Para implementar los métodos genéricos y pode utilizarlo en cualquier clase lo haremos de la siguiente manera
@@ -100,6 +108,24 @@ public class EjemploGenericos {
 	
 	public static void imprimirClientes(List<? extends Cliente> clientes) {
 		clientes.forEach(System.out::println);
+	}
+	
+	/* Vamos a crear un método genérico para calcular el mayor de tres objeetos
+	 * Comparable<T> es una interfaz que contiene el método compareTo 
+	 * Va a retornar la funcion el objeto mayor*/
+	
+	public static <T extends Comparable<T>> T maximo(T a, T b, T c) {
+		
+		T max = a;
+		
+		if (b.compareTo(max)>0) {
+			max = b;
+		}
+		
+		if(c.compareTo(max)>0) {
+			max = c;
+		}
+		return max;
 	}
 	
 	
