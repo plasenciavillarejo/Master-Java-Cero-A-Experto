@@ -4,15 +4,19 @@ import java.util.List;
 
 import com.master.java4.cero.experto.interfaces.modelo.Cliente;
 
-public interface CrudRepositorio {
+// Vamos a crear una clase reposotorio de forma genérica.
+// Indicamos al CrudRepositorio<T>
+public interface CrudRepositorio<T> {
 
-	List<Cliente> listar();
+	// Procedemos a cambiar todo la clase donde se Indique Cliente por (T)
+	
+	List<T> listar();
 
-	Cliente busquedaId(Integer id);
+	T busquedaId(Integer id);
 
-	void crearCliente(Cliente cliente);
+	void crearCliente(T cliente);
 
-	void editarCliente(Cliente cliente);
+	void editarCliente(T cliente);
 
 	void eliminar(Integer id);
 }

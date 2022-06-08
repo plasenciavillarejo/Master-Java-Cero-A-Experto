@@ -8,6 +8,7 @@ import com.master.java4.cero.experto.interfaces.interfaz.OrdenablePaginableCrudR
 import com.master.java4.cero.experto.interfaces.interfaz.OrdenableRepositorio;
 import com.master.java4.cero.experto.interfaces.interfaz.PaginableRepositorio;
 import com.master.java4.cero.experto.interfaces.modelo.Cliente;
+import com.master.java4.cero.experto.interfaces.repositorio.AbstractListRepositorio;
 import com.master.java4.cero.experto.interfaces.repositorio.ClienteListRepositorio;
 
 public class EjemploRepositorio {
@@ -16,7 +17,7 @@ public class EjemploRepositorio {
 		
 		
 		// Al heredar de la interfaz padre, ahora no es necesario hacer el cast de las clases ya que está engloba a todas.
-		OrdenablePaginableCrudRepositorio repositorio = new ClienteListRepositorio();
+		OrdenablePaginableCrudRepositorio<Cliente> repositorio = new ClienteListRepositorio();
 		
 		repositorio.crearCliente(new Cliente("Jose","Plasencia"));
 		repositorio.crearCliente(new Cliente("Maria","Lara"));
@@ -62,7 +63,7 @@ public class EjemploRepositorio {
 		System.out.println("\n==== ACTUALIAMOS CLIENTE ====");
 		System.out.println("Validamos que hemos actualizado el apellido de Villarejo a Balbuena : \n");
 		// Buscamos a Ana.
-		Cliente buscarAna = repositorio.busquedaId(3);
+		Object buscarAna = repositorio.busquedaId(3);
 		System.out.println(buscarAna);
 		
 		
