@@ -2,30 +2,21 @@ package com.master.java4.cero.experto.interfaces.modelo;
 
 import java.util.Objects;
 
-public class Cliente {
+// Extendemos de la EntidadGenerica que contiene el ID
+
+public class Cliente extends EntidadGenerica {
 	
-	private Integer id;
 	private String nombre;
 	private String apellido;
-	private static int ultimoId;
 		
-	public Cliente() {
-		this.id = ++ultimoId;
-	}
 
 	public Cliente(String nombre, String apellido) {
 		// this() invoca al constructor Cliente()
-		this();
+		//this();
+		// Invoca la clase padre (EntidadGenerica.java)
+		super();
 		this.nombre = nombre;
 		this.apellido = apellido;
-	}
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
 	}
 
 	public String getNombre() {

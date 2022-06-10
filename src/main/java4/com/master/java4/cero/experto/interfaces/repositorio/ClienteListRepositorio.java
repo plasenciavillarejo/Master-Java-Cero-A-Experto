@@ -14,19 +14,6 @@ public class ClienteListRepositorio implements CrudRepositorio, OrdenableReposit
 public class ClienteListRepositorio extends AbstractListRepositorio<Cliente> {
 
 	@Override
-	public Cliente busquedaId(Integer id) {
-		Cliente clienteEncontrado = null;
-
-		for (Cliente cliente : dataSource) {
-			if (cliente.getId() != null && cliente.getId().equals(id)) {
-				clienteEncontrado = cliente;
-				break;
-			}
-		}
-		return clienteEncontrado;
-	}
-
-	@Override
 	public void editarCliente(Cliente cliente) {
 		Cliente editarCliente = this.busquedaId(cliente.getId());
 		editarCliente.setApellido(cliente.getApellido());
