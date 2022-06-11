@@ -5,7 +5,7 @@ import java.util.Objects;
 public class Alumno implements Comparable<Alumno>{
 
 	private String nombre;
-	private int nota;
+	private Integer nota;
 
 	
 	// Constructor vacío.
@@ -26,15 +26,17 @@ public class Alumno implements Comparable<Alumno>{
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
+	
 
-	public int getnota() {
+
+	public Integer getNota() {
 		return nota;
 	}
 
-	public void setnota(int nota) {
+	public void setNota(Integer nota) {
 		this.nota = nota;
 	}
-	
+
 	// Generamos un toString para poder imprimir el constructor de forma más sencilla.
 	@Override
 	public String toString() {
@@ -46,11 +48,11 @@ public class Alumno implements Comparable<Alumno>{
 	@Override
 	public int compareTo(Alumno a) {
 
-		if (a.getNombre() == null) {
+		if (this.nombre == null) {
 			return 0;
 		}
 		// Vamos a ordenar por nombre
-		return this.nombre.compareTo(a.getNombre());
+		return this.nombre.compareTo(a.nombre);
 	}
 
 
