@@ -1,4 +1,4 @@
-package com.master.java7.cero.experto.set;
+package com.master.java7.cero.experto.list;
 
 import java.util.ArrayList;
 import java.util.Collections;
