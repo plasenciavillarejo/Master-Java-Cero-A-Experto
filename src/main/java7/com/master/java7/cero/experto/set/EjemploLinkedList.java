@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.ListIterator;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -51,5 +52,27 @@ public class EjemploLinkedList {
 		System.out.println("Primer Alumno eliminado : " + alumnoLista.removeFirst());
 		System.out.println("Segundo Alumno eliminado : " + alumnoLista.removeLast());
 		System.out.println("Alumno Totales: \n"+ alumnoLista);
+		
+		
+		System.out.println(" ===================================");
+		System.out.println(" Iteramos utilizando List.Iterator() utilizando hasNext");
+		System.out.println(" =================================== \n");
+		
+		ListIterator<Alumno> listIterator = alumnoLista.listIterator();
+		
+		while(listIterator.hasNext()){
+			System.out.println(listIterator.next());
+		}
+		
+		
+		System.out.println(" ===================================");
+		System.out.println(" Iteramos utilizando List.Iterator() utilizando Previous");
+		System.out.println(" =================================== \n");
+		
+		while(listIterator.hasPrevious()){
+			System.out.println(listIterator.previous());
+		}
+		
+		
 	}
 }
