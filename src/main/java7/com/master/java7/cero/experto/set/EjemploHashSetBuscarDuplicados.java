@@ -1,4 +1,4 @@
-package com.master.java5.cero.experto.set;
+package com.master.java7.cero.experto.set;
 
 import java.util.HashSet;
 import java.util.Set;
