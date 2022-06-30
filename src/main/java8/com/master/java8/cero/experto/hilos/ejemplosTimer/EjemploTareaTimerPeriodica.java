@@ -61,7 +61,7 @@ public class EjemploTareaTimerPeriodica {
 			 */
 		//}, 0, 1);
 		// 1 hora = 3600.
-		}, 0, 86400);	
+		}, 0, 86400);
 		System.out.println("Retrasamos la tarea inicial en 5 segundos ...");
 	}
 
