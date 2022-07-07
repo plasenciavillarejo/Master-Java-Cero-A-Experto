@@ -48,6 +48,7 @@ public class EjemploScheduledExecutorService {
 		// Bloqueamos la tarea hasa que llegue a 0.
 		//bloqueadorThread.await();
 		
+		// Bloqueamos la tarea utilizando AtomicInteger pero debemos meterle un while para decremente
 		while(contador.get() >= 0) {
 			if(contador.get() == 0)
 				contador.getAndDecrement();
