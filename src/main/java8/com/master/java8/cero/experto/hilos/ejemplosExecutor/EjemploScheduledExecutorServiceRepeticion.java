@@ -15,7 +15,7 @@ public class EjemploScheduledExecutorServiceRepeticion {
 		
 		System.out.println("Simulamos alguna tarea ...");
 		
-		executor.schedule(() ->{
+		executor.scheduleAtFixedRate(() ->{
 			try {
 				TimeUnit.MILLISECONDS.sleep(1000);
 			} catch (InterruptedException e) {
@@ -23,7 +23,7 @@ public class EjemploScheduledExecutorServiceRepeticion {
 			}
 			
 			System.out.println("Ejemplo de tarea programada");
-		},0,TimeUnit.MILLISECONDS);
+		},0,2,TimeUnit.MILLISECONDS);
 		
 		
 		System.out.println("Ejecutando alguna otra tarea...");
