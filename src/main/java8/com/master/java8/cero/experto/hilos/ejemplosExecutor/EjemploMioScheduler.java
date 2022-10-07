@@ -7,6 +7,8 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
+import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler;
+
 public class EjemploMioScheduler {
 
 	public static void main(String[] args) {
@@ -17,7 +19,9 @@ public class EjemploMioScheduler {
 		// tarea programada - 2 tareas
 		// ScheduledExecutorService executor = Executors.newScheduledThreadPool(2);
 		ScheduledExecutorService executor = Executors.newScheduledThreadPool(1);
-
+		ThreadPoolTaskScheduler a = new ThreadPoolTaskScheduler();
+		a.setPoolSize(2);
+		
 		executor.scheduleAtFixedRate(() -> {
 			Date date = new Date();
 			SimpleDateFormat formato = new SimpleDateFormat("HH:mm:SS");
