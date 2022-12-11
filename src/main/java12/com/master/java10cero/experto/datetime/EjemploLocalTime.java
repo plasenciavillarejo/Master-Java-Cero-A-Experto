@@ -2,8 +2,12 @@ package com.master.java10cero.experto.datetime;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.Month;
+import java.time.format.DateTimeFormatter;
+import java.time.format.TextStyle;
 import java.time.temporal.ChronoUnit;
+import java.util.Locale;
 
 public class EjemploLocalTime {
 
@@ -16,150 +20,41 @@ public class EjemploLocalTime {
 		  ##########################################################
 		 */
 		
-		System.out.println(" --- 1ª Forma de mostrar la fecha utilizando -> LocalDate.now() --- ");
-		System.out.println("#############################################################");
-		
-		LocalDate fechaActual = LocalDate.now();
-		System.out.println("Fecha Actual: " + fechaActual);
-		
-		/*########################################################################################*/
-		/*########################################################################################*/
-		
-		System.out.println("");
-		System.out.println(" --- 2ª Forma de mostrar la fecha utilizando LocalDate.of(y,m,d) --- ");
-		System.out.println("#############################################################");
-		
-		
-		fechaActual = LocalDate.of(2022, 3, 17);
-		System.out.println("Fecha Actual: " + fechaActual);
-		
-		/*########################################################################################*/
-		/*########################################################################################*/
-		
-		System.out.println("");
-		System.out.println(" --- 3ª Forma de mostrar la fecha utilizando LocalDate.of(y,Month.MARCH.,d) --- ");
-		System.out.println("#############################################################");
-		
-		
-		fechaActual = LocalDate.of(2022, Month.MARCH, 17);
-		System.out.println("Fecha Actual: " + fechaActual);
-		
-		/*########################################################################################*/
-		/*########################################################################################*/
-		
-		System.out.println("");
-		System.out.println(" --- 4ª Forma de mostrar la fecha utilizando LocalDate.parse() --- ");
-		System.out.println("#############################################################");
-		
-		
-		fechaActual = LocalDate.parse("2022-03-17");
-		System.out.println("Fecha Actual: " + fechaActual);
-		
-		/*########################################################################################*/
-		/*########################################################################################*/
-		
-		System.out.println("");
-		System.out.println(" --- Utilizando el método LocalDate.now().pluse() para sumarle días a una fecha --- ");
-		System.out.println("####################################################################################");
-		
-		LocalDate diaDeManiana = LocalDate.now().plusDays(1);
-		System.out.println("Fecha Actual más un día: " + diaDeManiana);
+		LocalTime time = LocalTime.now();
 		
 		
 		/*########################################################################################*/
 		/*########################################################################################*/
 		
 		System.out.println("");
-		System.out.println(" --- Utilizando el método LocalDate.now().minusMonths(1) para restar un mes al mismo día --- ");
-		System.out.println("####################################################################################");
+		System.out.println("Hora completa: " + time);
+		System.out.println("Hora: " + time.getHour());
+		System.out.println("Minutos: " + time.getMinute());
+		System.out.println("Segundos: " + time.getSecond());
 		
-		LocalDate mesAnteriorMismoDia = LocalDate.now().minusMonths(1);
-		System.out.println("Mes anterior con el mismo día al actual: " + mesAnteriorMismoDia);
-
-		/*########################################################################################*/
-		/*########################################################################################*/
+		LocalTime seisConTreinta = LocalTime.of(6,  30);
+		System.out.println(seisConTreinta);
 		
-		System.out.println("");
-		System.out.println(" --- Utilizando el método LocalDate.now().minus(1, ChronoUnits.MONTHS) para restar un mes al mismo día --- ");
-		System.out.println("####################################################################################");
-		
-		mesAnteriorMismoDia = LocalDate.now().minus(1, ChronoUnit.MONTHS);
-		System.out.println("Mes anterior con el mismo día al actual: " + mesAnteriorMismoDia);
+		seisConTreinta = LocalTime.parse("06:30");
+		System.out.println(seisConTreinta);
 		
 		
+		/* Formateo de fechas*/
+		DateTimeFormatter df = DateTimeFormatter.ofPattern("HH:mm:ss a");
+		String horaFormateada = time.format(df);
+		System.out.println("La hora formateada en formato a.m/p.m. según la hora que sea: "+ horaFormateada);
 		
-		/*########################################################################################*/
-		/*########################################################################################*/
-		
-		System.out.println("");
-		System.out.println(" --- Utilizando el método DayOfWekk para obtener el día de la semana en una fecha dada --- ");
-		System.out.println("###########################################################################################");
-		
-		DayOfWeek diaSemanaFuturo = LocalDate.parse("2022-11-11").getDayOfWeek();
-		System.out.println("Día de la semana: " + diaSemanaFuturo);
-		
-		
-		/*########################################################################################*/
-		/*########################################################################################*/
-		
-		System.out.println("");
-		System.out.println(" --- Utilizando el método LocalDate.of(y,m,d).getDayOfMont() para obtener el día del mes --- ");
-		System.out.println("####################################################################");
-		
-		int diaMes = LocalDate.of(2022,03,17).getDayOfMonth();
-		System.out.println("Día del mes: " + diaMes);	
-		
-		
-		/*########################################################################################*/
-		/*########################################################################################*/
-		
-		System.out.println("");
-		System.out.println(" --- Utilizando el método LocalDate.of(y,m,d).getDayOfYear() para obtener el día del año --- ");
-		System.out.println("####################################################################");
-		
-		int diaAnio = LocalDate.of(2022,03,17).getDayOfYear();
-		System.out.println("Día del Año: " + diaAnio);	
-		
-		
-		/*########################################################################################*/
-		/*########################################################################################*/
-		
-		System.out.println("");
-		System.out.println(" --- Utilizando el método LocalDate.now().isLeapYear() para saber si el años es bisiesto --- ");
-		System.out.println("#############################################################################################");
-		
-		boolean esBisiesto = LocalDate.now().isLeapYear();
-		System.out.println("¿El año es bisiesto?: " + esBisiesto);	
-		
-		
-		/*########################################################################################*/
-		/*########################################################################################*/
-		
-		System.out.println("");
-		System.out.println(" --- Comparación de fechas para saber si es mayor, menor o igual --- ");
-		System.out.println("#############################################################################################");
+		horaFormateada = df.format(seisConTreinta);
+		System.out.println("Obteniendo otra forma de formatear las fechas, "+ time );
 	
-		boolean esAntes = LocalDate.now().isBefore(LocalDate.parse("2022-10-08"));
-		System.out.println("¿Es antes la fecha a la actual?: " + esAntes);	
 		
-		boolean esDespues = LocalDate.now().isAfter(LocalDate.parse("2022-10-08"));
-		System.out.println("¿Es antes la fecha a la actual?: " + esDespues);	
-		
-		
-		/*########################################################################################*/
-		/*########################################################################################*/
+		// Hora máxima y míninma del día.
+		LocalTime max = LocalTime.MAX;
+		LocalTime min = LocalTime.MIN;
 		
 		System.out.println("");
-		System.out.println("Fecha actual = " + fechaActual);
-		System.out.println("Día: " + fechaActual.getDayOfMonth());
-		System.out.println("Mes: " + fechaActual.getMonth());
-		System.out.println("Año: " + fechaActual.getYear());
-		System.out.println("Era: " + fechaActual.getEra());
-		
-		
-		
-		
-		
+		System.out.println("Hora máxima del día: " + max);
+		System.out.println("Hora mínima del día: " +min);
 		
 	}
 }
