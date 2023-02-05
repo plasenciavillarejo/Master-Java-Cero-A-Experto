@@ -2,12 +2,20 @@ package com.master.java13.utiliti;
 
 import java.lang.reflect.Field;
 import java.util.Arrays;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 import com.master.java13.anotaciones.JsonAtributo;
+import com.master.java13.exception.JsonSerializadorException;
 
 public class JsonSerializador {
 
 	public static String convertirJson(Object object) {
+		
+		if(Objects.isNull(object)) {
+			throw new JsonSerializadorException("El objeto a transformar no puede ser null");
+		}
+		
 		// Debemos procesar las anotaciones utilizando Field que nos proporciona la api de reflexión de java.
 		Field[] atributos = object.getClass().getDeclaredFields();
 		
@@ -28,9 +36,35 @@ public class JsonSerializador {
 							: f.getAnnotation(JsonAtributo.class).nombre();
 					// Devolvemos los atributos con vertido el Json pero debemos escapar ya que la comilla es parte de el string
 					try {
-						return "\"" + nombre + "\":\"" + f.get(object) + "\"";
+						// Vamos a convertir la primera letra en mayusucular.
+						Object valor = f.get(object);
+						// Solo convertiros la letra en maysucula aquellos que tenga capitalizar = true y que sea un String
+						if(f.getAnnotation(JsonAtributo.class).capitalizar() 
+								&& valor instanceof String) {
+							String nuevoValor = (String) valor;
+							
+							// 1ª Forma de obtener el primer carácter
+							//nuevoValor = nuevoValor.substring(0,1).toUpperCase() + nuevoValor.substring(1).toLowerCase();
+							
+							// 2ª Forma de obtener el primer carácter. AL utilizar el charAt() es un caracter, debemos convertirlo a String.valueOf()
+							//nuevoValor = String.valueOf(nuevoValor.charAt(0)).toUpperCase() + nuevoValor.substring(1).toLowerCase();
+							
+							
+							// 3º Forma de obtener el primer carácter en mayuscula de toda la frase.
+							nuevoValor = Arrays.stream(nuevoValor.split(" "))
+									.map(palabra -> palabra.substring(0,1).toUpperCase()
+											+ palabra.substring(1).toLowerCase())
+									// Recoge todos los elementos y lo junta en uno solo, se concatena con el separador espacio por que es del tipo String
+									.collect(Collectors.joining(" "));
+											
+							
+							// Una vez que tenemos el nuevo valor transformado se lo asiganmos nuevamente al field
+							f.set(object, nuevoValor);
+						}
+						
+						return " \"" + nombre + "\" : \"" + f.get(object) + "\" ";
 					} catch (IllegalArgumentException | IllegalAccessException e) {
-						throw new RuntimeException("Error al serializar a json: " + e.getMessage());
+						throw new JsonSerializadorException("Error al serializar a json: " + e.getMessage());
 					}
 				})
 				

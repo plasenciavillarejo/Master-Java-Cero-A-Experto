@@ -7,8 +7,8 @@ import com.master.java13.anotaciones.JsonAtributo;
 public class Producto {
 	
 	// Cada atributo que anotamos con @JsonAtributo se va a exportar a Json
-	// Por defecto le damos un nombre
-	@JsonAtributo(nombre = "descripcion")
+	// Por defecto le damos un nombre y la primera letra en mayuscula  -> captializar = true
+	@JsonAtributo(nombre = "descripcion",capitalizar = true)
 	private String nombre;
 	
 	@JsonAtributo

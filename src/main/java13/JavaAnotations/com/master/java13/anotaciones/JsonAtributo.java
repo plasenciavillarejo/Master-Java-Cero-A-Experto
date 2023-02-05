@@ -15,4 +15,6 @@ public @interface JsonAtributo {
 
 	// Puede tenr atributos para esta clase
 	String nombre() default"";
+	// Por defecto que la primera letra esté en mayuscula
+	boolean capitalizar() default false;
 }
