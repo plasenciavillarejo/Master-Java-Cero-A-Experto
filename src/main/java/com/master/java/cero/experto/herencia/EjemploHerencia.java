@@ -28,7 +28,7 @@ public class EjemploHerencia {
 		System.out.println("======== Finalizando la instancia hacia el padre ========");
 		System.out.println("");
 		
-
+		
 		System.out.println("======== Creando la Instnacia a Profesor.java ==========");
 		Profesor profesor = new Profesor();
 		profesor.setNombre("Lola");

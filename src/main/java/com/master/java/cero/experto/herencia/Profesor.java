@@ -2,8 +2,10 @@ package com.master.java.cero.experto.herencia;
 
 /* 1.- Profesor es clase Hija (extends) de Persona*/
 public class Profesor extends Persona{
+	
 	private String asignatura;
 
+	// Constructor vació para el objeto Profesor
 	public Profesor() {
 		System.out.println("Profesor: Inicializando el constructor...");
 	}
