@@ -2,7 +2,7 @@ package com.master.java.cero.experto.variables;
 
 public class PrimitivosEnteros {
 
-    public static <var> void main(String[] args) {
+    public static void main(String[] args) {
 
         byte numeroByte = 127;
         System.out.println("numeroByte = " + numeroByte);
