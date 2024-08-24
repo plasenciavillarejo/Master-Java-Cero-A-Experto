@@ -1,4 +1,4 @@
-package com.master.java.cero.valorReferencia;
+package com.master.java.cero.valor.referencia;
 
 
 /* 1.- Vamos a crear una clase Perosna para este ejemplo, lo recomendado es crearlo en otro paquete y llamarlo aquí.*/ 

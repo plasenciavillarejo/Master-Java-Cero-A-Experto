@@ -1,4 +1,4 @@
-package com.master.java.cero.valorReferencia;
+package com.master.java.cero.valor.referencia;
 
 public class PasarPorValor {
 	public static void main (String[] args) {

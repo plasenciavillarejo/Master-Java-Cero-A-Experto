@@ -1,29 +1,34 @@
-package com.master.java.cero.valorReferencia;
+package com.master.java.cero.valor.referencia;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class PasarPorReferenciaObjeto {
 
+  private static final Logger LOGGER = LoggerFactory.getLogger(PasarPorReferenciaObjeto.class);
+  
 	public static void main(String[] args) {
 
 			
 			int[] edad = {10,11,12};
 			
-			System.out.println("Iniciamos el método main = " + edad);
+			LOGGER.info("Iniciamos el método main = {}", edad);
 			
 			for(int i=0; i<edad.length; i++) {
-				System.out.println("Edad[i] = "+ edad[i]);
+				LOGGER.info("Edad[i] = {}", edad[i]);
 			}
 			
-			System.out.println("Antes de llamar al metodo test");
+			LOGGER.info("Antes de llamar al metodo test");
 			
 			test(edad);
 			
-			System.out.println("Despues de llamar al método test");
+			LOGGER.info("Despues de llamar al método test");
 			for(int i=0; i<edad.length; i++) {
-				System.out.println("Edad[i] = "+ edad[i]);
+				LOGGER.info("Edad[i] = {}", edad[i]);
 			}
 			
 			
-			System.out.println("Finaliza el método main con los datos del arreglo cambiados.");
+			LOGGER.info("Finaliza el método main con los datos del arreglo cambiados.");
 		}
 		
 	/* 1.- Si pasamos una referencia de un arreglo, lo que se pasa es un puntero hacia una instancia real que está guardado
@@ -34,7 +39,7 @@ public class PasarPorReferenciaObjeto {
 		public static void test(int[] edadArreglo) {
 			
 			
-			System.out.println("Inicia el valor test" );
+			LOGGER.info("Inicia el valor test" );
 			
 			for(int i=0; i<edadArreglo.length; i++) {
 				edadArreglo[i] = edadArreglo[i] + 20;
