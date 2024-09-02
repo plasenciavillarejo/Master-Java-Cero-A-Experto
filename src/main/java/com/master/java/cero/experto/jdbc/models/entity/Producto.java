@@ -3,17 +3,18 @@ package com.master.java.cero.experto.jdbc.models.entity;
 import java.io.Serializable;
 import java.util.Date;
 
-public class Producto implements Serializable{
+public class Producto implements Serializable {
 
   private Long id;
-  
+
   private String nombre;
-  
+
   private Integer precio;
-  
+
   private Date fechaRegistro;
 
-    
+  private Categoria categoria;
+
   public Producto() {
     super();
   }
@@ -57,8 +58,15 @@ public class Producto implements Serializable{
   public void setFechaRegistro(Date fechaRegistro) {
     this.fechaRegistro = fechaRegistro;
   }
-  
+
+  public Categoria getCategoria() {
+    return categoria;
+  }
+
+  public void setCategoria(Categoria categoria) {
+    this.categoria = categoria;
+  }
+
   private static final long serialVersionUID = 1398171286607569452L;
 
-  
 }

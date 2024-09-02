@@ -10,7 +10,7 @@ public interface IRepositorioGenericoDao<T> {
   T buscarPorId(Long id);
   
   // Este objeto nos valdrá para guardar y actualizar el mismo objeto
-  void guardar(T objeto);
+  void guardar(T producto);
   
   void elminar(Long id);
 }

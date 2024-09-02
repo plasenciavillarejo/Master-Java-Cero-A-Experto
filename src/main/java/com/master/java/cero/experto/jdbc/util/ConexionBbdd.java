@@ -27,10 +27,7 @@ public class ConexionBbdd {
   /**
    * Servicio encargado de realizar la conexión a la BBDD 
    */
-  
   public static Connection getInstance() throws SQLException {
-    LOGGER.info(connection == null ? "La conexión a la BBDD es null, se procede a realizar la conexión"
-        : "La conexión ya está inicializada");
     if(connection == null) {
       connection = DriverManager.getConnection(URL,USUARIO,PASS);
       LOGGER.info("Se ha conectado correctamente");
