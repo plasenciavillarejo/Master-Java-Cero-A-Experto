@@ -20,11 +20,23 @@ public class EjemploMainJdbc {
   private static final String LISTADOPRODUCTOS = "Id Producto: '{}', Nombre Producto: '{}'"
       + ", Precio Producto: '{}', Nombre_Categoria '{}'";
   
+  private static IRepositorioGenericoDao<Producto> repositorio = new ProductoDaoImpl();
+  
   public static void main(String[] args) {
-    
     // DriverManagement se encarga de adminstrar las conexiones y los drivers que tengamos disponibles
-    try(Connection conn = ConexionBbdd.getConnectionBasicDataSource()) {      
-      IRepositorioGenericoDao<Producto> repositorio = new ProductoDaoImpl();
+    try(Connection conn = ConexionBbdd.getConnectionBasicDataSource()) {
+      // Por defecto se le indica que el auto commit sea falso, y una vez que funcione le indicaremos el commit()
+      if(conn.getAutoCommit()) {
+        conn.setAutoCommit(false);
+      }
+      logicaNegocioSeparada(conn);
+    } catch (SQLException e) {
+      LOGGER.error("Error al realizar la conexión a la BBDD: {}",e.getMessage(), e.getCause());
+    }
+  }
+  
+  private static void logicaNegocioSeparada(Connection conn) throws SQLException {
+    try {
       repositorio.listar().forEach(resultado -> 
       LOGGER.info(LISTADOPRODUCTOS, 
           resultado.getId(),
@@ -35,25 +47,7 @@ public class EjemploMainJdbc {
       LOGGER.info("Se procede a buscar el productor por el ID 2");
       repositorio.buscarPorId(2L);
       
-      LOGGER.info("Se procede a realizar el insert");
-      Producto producto = new Producto();
-      producto.setNombre("PC Apple");
-      producto.setPrecio(1500);
-      producto.setFechaRegistro(new Date());
-      
-      Categoria categoria = new Categoria();
-      categoria.setCategoriaId(3L);
-      categoria.setNombreCategoria("Pokemon");
-      producto.setCategoria(categoria);
-      
-      repositorio.guardar(producto);
-      
-      Producto productoDos = new Producto();
-      productoDos.setNombre("Apple Watch");
-      productoDos.setPrecio(450);
-      productoDos.setFechaRegistro(new Date());
-      
-      repositorio.guardar(productoDos);
+      insertarProductos();
       
       LOGGER.info("Listando todos los productos");
       repositorio.listar().forEach(resultado -> 
@@ -62,15 +56,8 @@ public class EjemploMainJdbc {
           resultado.getNombre(),
           resultado.getPrecio(),
           resultado.getCategoria().getNombreCategoria()));
-      
-      LOGGER.info("Se procede a editar un producto");
-      Producto productoActualizar = new Producto();
-      productoActualizar.setId(8L);
-      productoActualizar.setNombre("Apple Watch PRO");
-      productoActualizar.setPrecio(900);
-      productoActualizar.setFechaRegistro(new Date());
-      
-      repositorio.guardar(productoActualizar);
+           
+      editarProducto();
       
       LOGGER.info("LISTANDO LOS PRODUCDTOS ACTUALIZADOS");
       repositorio.listar().forEach(resultado -> 
@@ -80,12 +67,52 @@ public class EjemploMainJdbc {
           resultado.getPrecio(),
           resultado.getCategoria().getNombreCategoria()));
       
-      LOGGER.info("Se procede a borrar un producto");
+      borrarProductos();
       
-    } catch (SQLException e) {
-      LOGGER.error("Error al realizar la conexión a la BBDD: {}",e.getMessage(), e.getCause());
-    }
-    
+      // Si va bien, se hace el commit
+      conn.commit();
+      } catch (Exception e) {
+        LOGGER.error(e.getMessage(), e.getCause());
+        // En caso de que falle, se hace el rollback
+        conn.rollback();
+      }
   }
-
+  
+  private static void insertarProductos() {
+    LOGGER.info("Se procede a realizar el insert");
+    Producto producto = new Producto();
+    producto.setNombre("PC Apple");
+    producto.setPrecio(1500);
+    producto.setFechaRegistro(new Date());
+    
+    Categoria categoria = new Categoria();
+    categoria.setCategoriaId(3L);
+    categoria.setNombreCategoria("Pokemon");
+    producto.setCategoria(categoria);
+    
+    repositorio.guardar(producto);
+    
+    Producto productoDos = new Producto();
+    productoDos.setNombre("Apple Watch");
+    productoDos.setPrecio(450);
+    productoDos.setFechaRegistro(new Date());
+    
+    repositorio.guardar(productoDos);
+  }
+  
+  private static void editarProducto() {
+    LOGGER.info("Se procede a editar un producto");
+    Producto productoActualizar = new Producto();
+    productoActualizar.setId(8L);
+    productoActualizar.setNombre("Apple Watch PRO");
+    productoActualizar.setPrecio(900);
+    productoActualizar.setFechaRegistro(new Date());    
+    repositorio.guardar(productoActualizar);
+  }
+  
+  private static void borrarProductos() {
+    LOGGER.info("Se procede a borrar un producto - Lógica no implentada");
+    // Lógica no Implementada
+  }
+  
 }
