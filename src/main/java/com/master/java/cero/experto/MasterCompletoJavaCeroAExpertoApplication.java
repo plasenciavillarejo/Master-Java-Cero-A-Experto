@@ -6,11 +6,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class MasterCompletoJavaCeroAExpertoApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(MasterCompletoJavaCeroAExpertoApplication.class, args);
-		
-	}
-	
-	
+  public static void main(String[] args) {
+    SpringApplication.run(MasterCompletoJavaCeroAExpertoApplication.class, args);
+
+  }
 
 }
