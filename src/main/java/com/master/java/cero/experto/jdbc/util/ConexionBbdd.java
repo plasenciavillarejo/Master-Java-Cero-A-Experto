@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+import org.apache.commons.dbcp2.BasicDataSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 /**
@@ -24,6 +25,8 @@ public class ConexionBbdd {
   // Conección Singleton
   private static Connection connection;
   
+  private static BasicDataSource basicDataSource;
+  
   /**
    * Servicio encargado de realizar la conexión a la BBDD 
    */
@@ -33,6 +36,44 @@ public class ConexionBbdd {
       LOGGER.info("Se ha conectado correctamente");
     }
     return connection;
+  }
+ 
+  /**
+   * Configuración DataSource por un Pool de Conexiones.
+   * 
+   */
+  
+  public static BasicDataSource getInstanceBasicDatasource() {
+   if(basicDataSource == null) {
+     basicDataSource = new BasicDataSource();
+     
+     // Configuramos el POOL
+     basicDataSource.setUrl(URL);
+     basicDataSource.setUsername(USUARIO);
+     basicDataSource.setPassword(PASS);
+     
+     // Tamaño del Pool Inicial - 3 Conexiones Habilitadas
+     basicDataSource.setInitialSize(3);
+     
+     // Conexiones minimas que van a estar esperando para ser utilizadas
+     basicDataSource.setMinIdle(3);
+     
+     // Conexiones máximas que van a estar esperando para ser utilizadas
+     basicDataSource.setMaxIdle(8);
+     
+     // Inactivas que esten esperando a ser utilizadas
+     basicDataSource.setMaxTotal(8);
+   }
+   return basicDataSource;
+  }
+  
+  /**
+   * Método para conectarnos para devolver un Objeto Connection
+   * @throws SQLException 
+   */
+  
+  public static Connection getConnectionBasicDataSource() throws SQLException {
+    return getInstanceBasicDatasource().getConnection();
   }
   
 }

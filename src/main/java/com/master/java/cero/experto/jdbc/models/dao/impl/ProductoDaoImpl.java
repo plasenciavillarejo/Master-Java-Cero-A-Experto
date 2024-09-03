@@ -24,7 +24,10 @@ public class ProductoDaoImpl implements IRepositorioGenericoDao<Producto> {
   
   // Método que devuelva la conexíon a la BBDD  
   public Connection getConnection() throws SQLException {
-    return ConexionBbdd.getInstance();
+    /* Método antiguo:
+     *  return ConexionBbdd.getInstance();
+     */
+    return ConexionBbdd.getConnectionBasicDataSource(); 
   }
   
   @Override

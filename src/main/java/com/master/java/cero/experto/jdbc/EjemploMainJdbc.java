@@ -23,7 +23,7 @@ public class EjemploMainJdbc {
   public static void main(String[] args) {
     
     // DriverManagement se encarga de adminstrar las conexiones y los drivers que tengamos disponibles
-    try(Connection conn = ConexionBbdd.getInstance()) {      
+    try(Connection conn = ConexionBbdd.getConnectionBasicDataSource()) {      
       IRepositorioGenericoDao<Producto> repositorio = new ProductoDaoImpl();
       repositorio.listar().forEach(resultado -> 
       LOGGER.info(LISTADOPRODUCTOS, 
