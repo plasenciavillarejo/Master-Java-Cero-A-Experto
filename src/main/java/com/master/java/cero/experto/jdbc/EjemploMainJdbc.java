@@ -37,6 +37,7 @@ public class EjemploMainJdbc {
   
   private static void logicaNegocioSeparada(Connection conn) throws SQLException {
     try {
+      
       repositorio.listar().forEach(resultado -> 
       LOGGER.info(LISTADOPRODUCTOS, 
           resultado.getId(),
@@ -106,10 +107,16 @@ public class EjemploMainJdbc {
   private static void editarProducto() throws SQLException {
     LOGGER.info("Se procede a editar un producto");
     Producto productoActualizar = new Producto();
-    productoActualizar.setId(8L);
+    productoActualizar.setId(25L);
     productoActualizar.setNombre("Apple Watch PRO");
     productoActualizar.setPrecio(900);
-    productoActualizar.setFechaRegistro(new Date());    
+    productoActualizar.setFechaRegistro(new Date());
+    
+    Categoria categoria = new Categoria();
+    categoria.setCategoriaId(3L);
+    categoria.setNombreCategoria("Pokemon Actualizado");
+    productoActualizar.setCategoria(categoria);
+    
     repositorio.guardar(productoActualizar);
   }
   

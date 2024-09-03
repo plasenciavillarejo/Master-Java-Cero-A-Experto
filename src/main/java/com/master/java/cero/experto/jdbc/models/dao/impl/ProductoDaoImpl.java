@@ -76,11 +76,13 @@ public class ProductoDaoImpl implements IRepositorioGenericoDao<Producto> {
   public void guardar(Producto producto) throws SQLException {
     String sqlInsert = "";
     if(producto.getId() != null && producto.getId() > 0) {
-      sqlInsert = "UPDATE productos SET nombre = ?, precio = ?, fecha_registro = ?, categoria_id = ? WHERE id = ?";
+      sqlInsert = "UPDATE productos SET nombre = ?, precio = ?, categoria_id = ? WHERE id = ?";
     } else {
       sqlInsert = "INSERT INTO productos(nombre, precio, categoria_id, fecha_registro) values (?,?,?,?)";
     }
-    try(PreparedStatement stmt = getConnection().prepareStatement(sqlInsert)) {
+    
+    // Con esto indicamos que despues de ejecutar recibamos el ID del objeto insertado : Statement.RETURN_GENERATED_KEYS
+    try(PreparedStatement stmt = getConnection().prepareStatement(sqlInsert, Statement.RETURN_GENERATED_KEYS)) {
       stmt.setString(1, producto.getNombre());
       stmt.setLong(2, producto.getPrecio());
       stmt.setLong(3, producto.getCategoria().getCategoriaId());
@@ -93,6 +95,17 @@ public class ProductoDaoImpl implements IRepositorioGenericoDao<Producto> {
         stmt.setDate(4, new Date(producto.getFechaRegistro().getTime()));
       }
       stmt.executeUpdate();
+      
+      if(producto.getId() == null) {
+        try(ResultSet rs = stmt.getGeneratedKeys()) {
+          if(rs.next()) {
+            LOGGER.info("Recibiendo el ID del producto insertardo");
+            producto.setId(rs.getLong(1));
+            LOGGER.info("Producto insertado correctamente con ID {}", producto.getId());
+          }
+        }
+      }
+      
       LOGGER.info("Producto ");
     } catch (SQLException e) {
       LOGGER.error("Error al insertar un producto: {}", e.getMessage(), e.getCause());
