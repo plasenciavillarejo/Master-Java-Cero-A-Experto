@@ -51,7 +51,7 @@ public class ConexionBbdd {
      basicDataSource.setUrl(URL);
      basicDataSource.setUsername(USUARIO);
      basicDataSource.setPassword(PASS);
-     
+
      // Tamaño del Pool Inicial - 3 Conexiones Habilitadas
      basicDataSource.setInitialSize(3);
      
@@ -63,6 +63,12 @@ public class ConexionBbdd {
      
      // Inactivas que esten esperando a ser utilizadas
      basicDataSource.setMaxTotal(8);
+
+     // Desactivamos el AutoCommit
+     basicDataSource.setAutoCommitOnReturn(false);
+     
+     // Configuración de rollback automático al devolver la conexión al pool
+     basicDataSource.setRollbackOnReturn(true);
    }
    return basicDataSource;
   }

@@ -73,7 +73,7 @@ public class ProductoDaoImpl implements IRepositorioGenericoDao<Producto> {
   }
 
   @Override
-  public void guardar(Producto producto) {
+  public void guardar(Producto producto) throws SQLException {
     String sqlInsert = "";
     if(producto.getId() != null && producto.getId() > 0) {
       sqlInsert = "UPDATE productos SET nombre = ?, precio = ?, fecha_registro = ?, categoria_id = ? WHERE id = ?";

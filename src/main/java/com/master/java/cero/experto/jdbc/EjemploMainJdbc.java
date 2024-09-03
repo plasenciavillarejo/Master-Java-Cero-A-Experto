@@ -47,7 +47,7 @@ public class EjemploMainJdbc {
       LOGGER.info("Se procede a buscar el productor por el ID 2");
       repositorio.buscarPorId(2L);
       
-      insertarProductos();
+      insertarProductos(conn);
       
       LOGGER.info("Listando todos los productos");
       repositorio.listar().forEach(resultado -> 
@@ -71,6 +71,7 @@ public class EjemploMainJdbc {
       
       // Si va bien, se hace el commit
       conn.commit();
+
       } catch (Exception e) {
         LOGGER.error(e.getMessage(), e.getCause());
         // En caso de que falle, se hace el rollback
@@ -78,7 +79,7 @@ public class EjemploMainJdbc {
       }
   }
   
-  private static void insertarProductos() {
+  private static void insertarProductos(Connection conn) throws SQLException {
     LOGGER.info("Se procede a realizar el insert");
     Producto producto = new Producto();
     producto.setNombre("PC Apple");
@@ -93,14 +94,16 @@ public class EjemploMainJdbc {
     repositorio.guardar(producto);
     
     Producto productoDos = new Producto();
+    productoDos.setId(1L);
     productoDos.setNombre("Apple Watch");
     productoDos.setPrecio(450);
     productoDos.setFechaRegistro(new Date());
+    productoDos.setCategoria(categoria);
     
     repositorio.guardar(productoDos);
   }
   
-  private static void editarProducto() {
+  private static void editarProducto() throws SQLException {
     LOGGER.info("Se procede a editar un producto");
     Producto productoActualizar = new Producto();
     productoActualizar.setId(8L);
