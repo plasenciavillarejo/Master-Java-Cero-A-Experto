@@ -1,5 +1,7 @@
 package com.master.java.cero.experto;
 
+import java.math.BigDecimal;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -23,8 +25,24 @@ class CuentaTest {
 	  Assertions.assertEquals(valorEsperado, valorReal);
 	  
 	  // Validamos con un expersión booleana ( Para sonar indica que se utilice siempre el assertEquals) 
-	  Assertions.assertTrue(valorReal.equals("Plasencia"));
+	  // Assertions.assertTrue(valorReal.equals("Plasencia"));
 	  
 	}
-
+	
+	@Test
+	void testSaldoCuenta() {
+	  Cuenta cuenta = new Cuenta("Plasencia", new BigDecimal("1000.113"));
+	  Assertions.assertEquals(1000.113, cuenta.getSaldo().doubleValue());
+	}
+	
+	@Test
+	void testReferenciaCuenta() {
+	  Cuenta cuenta = new Cuenta("Plasencia", new BigDecimal("1000.113"));
+	  Cuenta cuentaDos = new Cuenta("Plasencia", new BigDecimal("1000.113"));
+	  
+	  Assertions.assertEquals(cuentaDos, cuenta);
+	}
+	
+	
+	
 }
